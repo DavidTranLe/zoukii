@@ -1,0 +1,34 @@
+volumes:
+  db-data:
+services:
+  mongo-db:
+    image: mongo:6
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: thisistheroot
+      MONGO_INITDB_ROOT_PASSWORD: idkwhatisevenapassword
+    volumes:
+      - db-data:/data/db
+  mongo-express:
+    image: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: thisistheroot
+      ME_CONFIG_MONGODB_ADMINPASSWORD: idkwhatisevenapassword
+      ME_CONFIG_MONGODB_SERVER: mongo
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
+    restart: always
+  # https://geshan.com.np/blog/2023/01/nextjs-docker/
+  # web:
+  #   build:
+  #     context: ./
+  #     target: runner
+  #   volumes:
+  #     - .:/app
+  #   command: npm run dev
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     NODE_ENV: development
