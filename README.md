@@ -16,7 +16,7 @@
 <tr>
 <td>
 
-An app that displays and filters Zouk congresses, events, and classes.
+An app that displays and filters Zouk congresses, events, and classes. 
 
 </td>
 </tr>
